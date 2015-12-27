@@ -148,7 +148,7 @@ public final class DieselConsole
   private void initScreen()
   {
     // Build the middle panel
-    JConsole appPanel = JConsole.getInstance(new io.miti.diesel.gui.CmdLineInterpreter());
+    JConsole appPanel = JConsole.getInstance(new io.miti.diesel.gui.DSLInterpreter());
     appPanel.setBackground(Color.WHITE);
     frame.getContentPane().add(appPanel, BorderLayout.CENTER);
   }
