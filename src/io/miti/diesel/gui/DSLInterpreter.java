@@ -64,13 +64,13 @@ public final class DSLInterpreter implements Interpreter {
     ;
     
     // Check the output of the command
-    final String output = parser.getOutput();
-    if ((output == null) || output.isEmpty()) {
-      text.append("\n");
-      return true;
-    } else {
-      text.append("\n" + output + "\n");
-    }
+//    final String output = parser.getOutput();
+//    if ((output == null) || output.isEmpty()) {
+//      text.append("\n");
+//      return true;
+//    } else {
+//      text.append("\n" + output + "\n");
+//    }
     
     // Return success
     return true;

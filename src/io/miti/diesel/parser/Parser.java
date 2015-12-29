@@ -5,8 +5,6 @@ import java.util.List;
 
 public final class Parser {
   
-  private String output = null;
-  
   /**
    * Default constructor.
    */
@@ -14,14 +12,33 @@ public final class Parser {
     super();
   }
 
+  /**
+   * Return if the character is whitespace.
+   * 
+   * @param ch the input character
+   * @return if it is whitespace
+   */
   private static boolean isWhitespace(final char ch) {
     return Character.isWhitespace(ch);
   }
 
+  /**
+   * Return if the character is valid in a word.
+   * 
+   * @param ch the input character
+   * @return if it can be in a word
+   */
   private static boolean isWord(final char ch) {
     return Character.isJavaIdentifierStart(ch);
   }
 
+  /**
+   * If the buffer is not empty, save it to the list of tokens and
+   * clear the buffer.
+   * 
+   * @param tokens the list of saved tokens
+   * @param sb the string buffer
+   */
   private static void checkBuffer(final List<String> tokens, final StringBuilder sb) {
     if (sb.length() > 0) {
       tokens.add(sb.toString());
@@ -29,6 +46,13 @@ public final class Parser {
     }
   }
 
+  /**
+   * Tokenize the line into a list of tokens.
+   * 
+   * @param line the input command
+   * @return a list of tokens in the command
+   * @throws ParseException thrown when parsing
+   */
   public List<Token> parse(final String line) throws ParseException {
 
     // Tokenize the line
@@ -40,6 +64,12 @@ public final class Parser {
     return data;
   }
 
+  /**
+   * Add token type to each token in the input list.
+   * 
+   * @param tokens the list of strings from the input command
+   * @return the list of token objects
+   */
   private List<Token> lookupTokens(final List<String> tokens) {
     if ((tokens == null) || tokens.isEmpty()) {
       return null;
@@ -53,6 +83,13 @@ public final class Parser {
     return data;
   }
 
+  /**
+   * Tokenize the line.
+   * 
+   * @param line the input string
+   * @return the list of tokens
+   * @throws ParseException thrown when parsing
+   */
   private List<String> tokenize(final String line) throws ParseException {
 
     List<String> tokens = new ArrayList<String>(10);
@@ -115,9 +152,5 @@ public final class Parser {
     checkBuffer(tokens, sb);
 
     return tokens;
-  }
-  
-  public String getOutput() {
-    return output;
   }
 }
