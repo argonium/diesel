@@ -10,7 +10,7 @@ public final class Token
   }
   
   public Token(final String sValue) {
-    // TODO Set token type
+    // Set token type
     value = sValue;
     if (value.equals("=")) {
       tokenType = TokenType.EQUALS;
