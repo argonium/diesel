@@ -37,9 +37,6 @@ public final class Parser {
     // Turn the list of tokens into tagged values
     final List<Token> data = lookupTokens(tokens);
 
-    // TODO Search for a match on the format
-    ;
-
     return data;
   }
 
