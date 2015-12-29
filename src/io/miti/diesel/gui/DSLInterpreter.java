@@ -66,16 +66,20 @@ public final class DSLInterpreter implements Interpreter {
    */
   private boolean executeCommand(final JTextArea text, final List<Token> tokens) {
     
-    // Look for a match, and execute it
-    executor.exec(tokens);
-    
-    // Check the output of the command
-    final String output = executor.getOutput();
-    if ((output == null) || output.isEmpty()) {
-      text.append("\n");
-      return true;
-    } else {
-      text.append("\n" + output + "\n");
+    try {
+      // Look for a match, and execute it
+      executor.exec(tokens);
+      
+      // Check the output of the command
+      final String output = executor.getOutput();
+      if ((output == null) || output.isEmpty()) {
+        text.append("\n");
+        return true;
+      } else {
+        text.append("\n" + output + "\n");
+      }
+    } catch (Exception ex) {
+      text.append("\n" + ex.getMessage() + "\n");
     }
     
     // Return success
