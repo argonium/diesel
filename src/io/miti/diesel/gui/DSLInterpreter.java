@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.JTextArea;
 
+import io.miti.diesel.executor.CmdExecutor;
 import io.miti.diesel.parser.ParseException;
 import io.miti.diesel.parser.Parser;
 import io.miti.diesel.parser.Token;
@@ -18,11 +19,15 @@ public final class DSLInterpreter implements Interpreter {
   /** The command parser. */
   private Parser parser = null;
   
+  /** The executor. */
+  private CmdExecutor executor = null;
+  
   /**
    * Public constructor.
    */
   public DSLInterpreter() {
     parser = new Parser();
+    executor = new CmdExecutor();
   }
   
   @Override
@@ -60,17 +65,18 @@ public final class DSLInterpreter implements Interpreter {
    * @return whether the command was executed
    */
   private boolean executeCommand(final JTextArea text, final List<Token> tokens) {
-    // TODO Look for a match, and execute it
-    ;
+    
+    // Look for a match, and execute it
+    executor.exec(tokens);
     
     // Check the output of the command
-//    final String output = parser.getOutput();
-//    if ((output == null) || output.isEmpty()) {
-//      text.append("\n");
-//      return true;
-//    } else {
-//      text.append("\n" + output + "\n");
-//    }
+    final String output = executor.getOutput();
+    if ((output == null) || output.isEmpty()) {
+      text.append("\n");
+      return true;
+    } else {
+      text.append("\n" + output + "\n");
+    }
     
     // Return success
     return true;
